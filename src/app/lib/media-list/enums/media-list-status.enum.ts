@@ -1,0 +1,8 @@
+export enum MediaListStatus {
+  COMPLETED = 'COMPLETED',
+  CURRENT = 'CURRENT',
+  DROPPED = 'DROPPED',
+  PAUSED = 'PAUSED',
+  PLANNING = 'PLANNING',
+  REPEATING = 'REPEATING',
+}

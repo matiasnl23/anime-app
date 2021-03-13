@@ -1,0 +1,17 @@
+<div class="small-card" [style.backgroundImage]="getCoverImage(item)">
+  <div class="info">
+    <h4>{{ item.title.romaji }}</h4>
+  </div>
+
+  <div class="more-info">
+    <h4>
+      {{ item.title.native }}<br />
+      <small>{{ item.seasonYear }} - {{ item.season }}</small>
+    </h4>
+
+    <div *ngIf="item.episodes > 1">Episodes: {{ item.episodes }}</div>
+    <div class="badge-container">
+      <span *ngFor="let genre of item.genres" class="badge">{{ genre }}</span>
+    </div>
+  </div>
+</div>

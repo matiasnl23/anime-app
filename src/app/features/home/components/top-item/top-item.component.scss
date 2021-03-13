@@ -1,0 +1,62 @@
+.small-card {
+  background-position: center;
+  background-size: cover;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+
+  &:hover .info {
+    display: none;
+  }
+
+  &:hover .more-info {
+    display: flex;
+  }
+
+  .info {
+    background-color: #000000aa;
+    bottom: 0;
+    left: 0;
+    padding: 0 1rem;
+    position: absolute;
+    right: 0;
+
+    h4 {
+      margin: 0.5rem 0;
+    }
+  }
+
+  .more-info {
+    background-color: #000000aa;
+    bottom: 0;
+    display: none;
+    flex-direction: column;
+    font-size: 0.75rem;
+    left: 0;
+    padding: 1rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    h4 {
+      margin: 0;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .badge-container {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+
+    .badge {
+      background-color: gray;
+      border-radius: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      white-space: nowrap;
+    }
+  }
+}

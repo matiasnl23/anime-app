@@ -1,0 +1,6 @@
+<h2>{{ title }}</h2>
+<div class="card-container">
+  <ng-container *ngFor="let item of items | async">
+    <app-top-item [item]="item"></app-top-item>
+  </ng-container>
+</div>
