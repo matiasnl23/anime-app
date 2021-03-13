@@ -1,4 +1,6 @@
-<div class="small-card" [style.backgroundImage]="getCoverImage(item)">
+<div routerLink="/detail/{{ item.id }}" class="small-card">
+  <img [src]="getCoverImage" [alt]="item.title.romaji" loading="lazy" />
+
   <div class="info">
     <h4>{{ item.title.romaji }}</h4>
   </div>

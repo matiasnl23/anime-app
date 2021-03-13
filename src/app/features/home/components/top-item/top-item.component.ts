@@ -14,8 +14,8 @@ export class TopItemComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getCoverImage(media: ITopAnime): string | null {
-    const { coverImage: ci } = media;
-    return `url(${ci.extraLarge || ci.large || ci.medium})`;
+  get getCoverImage(): string | null {
+    const { coverImage: ci } = this.item;
+    return ci.extraLarge || ci.large || ci.medium || '';
   }
 }
