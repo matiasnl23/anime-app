@@ -33,7 +33,7 @@
     <div class="col-12 col-sm-8 col-md-9 py-2 pt-sm-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{{ media.title.romaji }}</h5>
+          <h5 class="card-title">{{ media.title?.romaji }}</h5>
           <div [innerHtml]="media.description"></div>
         </div>
       </div>
@@ -50,17 +50,19 @@
       </div>
 
       <div class="relations d-flex mt-2 table-responsive">
-        <div *ngFor="let rl of media.relations.edges; first as isFirst">
+        <div *ngFor="let rl of media.relations?.edges; first as isFirst">
           <div
-            [routerLink]="['/', 'detail', rl.node.id]"
+            [routerLink]="['/', 'detail', rl.node?.id]"
             class="card"
             [class.ml-2]="!isFirst"
             style="cursor: pointer; width: 250px"
           >
-            <img [src]="getCoverImage(rl.node.coverImage)" />
+            <img *ngIf="rl.node" [src]="getCoverImage(rl.node.coverImage)" />
             <div>
-              <h6 class="text-truncate">{{ rl.node.title.romaji }}</h6>
-              <p class="text-truncate m-0 small">{{ rl.node.title.native }}</p>
+              <h6 class="text-truncate">{{ rl.node?.title?.romaji }}</h6>
+              <p class="text-truncate m-0 small">
+                {{ rl.node?.title?.native }}
+              </p>
               <br />
               <p class="m-0">{{ rl.relationType }}</p>
             </div>
