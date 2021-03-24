@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./cards-grid.component.scss'],
 })
 export class CardsGridComponent implements OnInit {
-  @Input()
-  items?: Observable<any>;
+  @Input('items')
+  items$?: Observable<any>;
 
   @Input()
   title = 'Title here';

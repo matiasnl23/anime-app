@@ -1,10 +1,14 @@
-.navbar-container {
-  align-items: center;
+.navbar-background {
   background-color: #404b69;
   box-shadow: 0px 0px 30px -10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-container {
+  align-items: center;
   display: flex;
   height: 64px;
   justify-content: space-between;
+  max-width: 1200px;
   padding: 0 2rem;
   width: 100%;
 }

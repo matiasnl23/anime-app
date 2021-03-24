@@ -1,4 +1,12 @@
-.container {
-  padding: 0 2rem;
-  padding-top: 1rem;
+@import "bootstrap/scss/bootstrap";
+
+.home-container {
+  margin: 0 0.75rem;
+  margin-top: 1rem;
+  max-width: 1200px;
+
+  @include media-breakpoint-up(sm) {
+    margin: 0 2rem;
+    margin-top: 1rem;
+  }
 }

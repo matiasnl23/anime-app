@@ -1,15 +1,15 @@
 <div routerLink="/detail/{{ item.id }}" class="small-card">
   <img [src]="getCoverImage" [alt]="item.title.romaji" loading="lazy" />
 
-  <div class="info">
-    <h4>{{ item.title.romaji }}</h4>
+  <div class="info py-2">
+    <h6>{{ item.title.romaji }}</h6>
   </div>
 
   <div class="more-info">
-    <h4>
+    <h5>
       {{ item.title.native }}<br />
       <small>{{ item.seasonYear }} - {{ item.season }}</small>
-    </h4>
+    </h5>
 
     <div *ngIf="item.episodes > 1">Episodes: {{ item.episodes }}</div>
     <div class="badge-container">

@@ -1,0 +1,63 @@
+@import "~/src/theme";
+
+.banner {
+  height: 150px;
+  margin-top: -1rem;
+  object-fit: cover;
+  width: 100%;
+}
+
+.image-and-action {
+  align-items: flex-end;
+  display: flex;
+  margin-top: calc(-150px + 48px);
+  width: 100%;
+
+  &.no-banner {
+    margin-top: 0;
+  }
+
+  img {
+    height: 150px;
+    object-fit: cover;
+    width: 100px;
+  }
+}
+
+.actions {
+  column-gap: 0.5rem;
+  display: flex;
+  width: 100%;
+}
+
+.relations {
+  .card {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+
+    img {
+      height: 80px;
+      width: 60px;
+      object-fit: cover;
+    }
+
+    div {
+      overflow: hidden;
+      padding: 0 1rem;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .banner {
+    height: 300px;
+  }
+
+  .image-and-action {
+    img {
+      height: unset;
+      width: 100%;
+    }
+  }
+}

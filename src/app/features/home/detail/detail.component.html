@@ -1,1 +1,74 @@
-<p>detail works!</p>
+<div *ngIf="media">
+  <img
+    *ngIf="media.bannerImage"
+    [src]="media.bannerImage"
+    alt="media.title.romaji"
+    class="banner"
+  />
+
+  <div class="row px-2 px-sm-4">
+    <div class="col-12 col-sm-4 col-md-3">
+      <div
+        class="image-and-action d-flex d-sm-block"
+        [class.no-banner]="!media.bannerImage"
+      >
+        <img [src]="getCoverImage(media.coverImage)" alt="" />
+
+        <div class="actions ml-2 ml-sm-0 mt-sm-2">
+          <button class="btn btn-primary w-100">Añadir</button>
+          <button class="btn btn-danger">C</button>
+        </div>
+      </div>
+
+      <div class="d-none d-sm-block mt-2 card">
+        <div class="card-body">
+          <div *ngFor="let d of getDetails(media)">
+            <dt>{{ d.title }}</dt>
+            <dd class="text-truncate pl-2 mb-0">{{ d.value }}</dd>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-8 col-md-9 py-2 pt-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ media.title.romaji }}</h5>
+          <div [innerHtml]="media.description"></div>
+        </div>
+      </div>
+
+      <div class="d-sm-none card mt-2">
+        <div class="card-body">
+          <div class="d-flex table-responsive">
+            <div *ngFor="let d of getDetails(media)" class="px-2 py-2">
+              <dt class="text-nowrap">{{ d.title }}</dt>
+              <dd class="mb-0 text-nowrap">{{ d.value }}</dd>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relations d-flex mt-2 table-responsive">
+        <div *ngFor="let rl of media.relations.edges; first as isFirst">
+          <div
+            [routerLink]="['/', 'detail', rl.node.id]"
+            class="card"
+            [class.ml-2]="!isFirst"
+            style="cursor: pointer; width: 250px"
+          >
+            <img [src]="getCoverImage(rl.node.coverImage)" />
+            <div>
+              <h6 class="text-truncate">{{ rl.node.title.romaji }}</h6>
+              <p class="text-truncate m-0 small">{{ rl.node.title.native }}</p>
+              <br />
+              <p class="m-0">{{ rl.relationType }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Router-->
+    </div>
+  </div>
+</div>

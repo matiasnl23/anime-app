@@ -1,0 +1,29 @@
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+$body-bg: #283149;
+$body-color: #dbedf3;
+$headings-margin-bottom: 0;
+
+//$theme-colors: (
+//"primary": #000,
+//);
+
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+
+$enable-rounded: false;
+
+@import "bootstrap";
+
+.card {
+  background-color: #404b69;
+  border: none;
+
+  .card-body {
+    background-color: #404b69;
+    border: none;
+  }
+}

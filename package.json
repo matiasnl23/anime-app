@@ -23,6 +23,7 @@
     "@ngrx/store": "^11.0.1",
     "@ngrx/store-devtools": "^11.0.1",
     "apollo-angular": "^2.4.0",
+    "bootstrap": "^4.6.0",
     "graphql": "^15.0.0",
     "ngx-bootstrap": "^6.2.0",
     "rxjs": "~6.6.0",
