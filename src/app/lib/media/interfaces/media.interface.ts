@@ -1,5 +1,8 @@
 import { IDate } from '../../date/interfaces/date.interface';
+import { IPage } from '../../page/interfaces/page.interface';
+import { IStaff } from '../../staff/interfaces/staff.interface';
 import { MediaFormat } from '../enums/media-format.enum';
+import { MediaRelation } from '../enums/media-relation.enum';
 import { MediaSeason } from '../enums/media-season.enum';
 import { MediaSource } from '../enums/media-source.enum';
 import { MediaStatus } from '../enums/media-status.enum';
@@ -28,13 +31,7 @@ export interface IMedia extends IMediaBase {
   duration: number | null;
   endDate: IDate;
   isAdult: boolean;
-  relations: {
-    edges: {
-      node: IMediaMinimalBase;
-      relationType: string;
-      isMainStudio: boolean;
-    }[];
-  };
+  relations: IMediaConnection;
   source: MediaSource;
   startDate: IDate;
   studios: {
@@ -44,11 +41,7 @@ export interface IMedia extends IMediaBase {
       isAnimationStudio: boolean;
     }[];
   };
-  trailer: {
-    id: string;
-    site: string;
-    thumbnail: string;
-  };
+  trailer: ITrailer;
   volumes: number | null;
 }
 
@@ -57,4 +50,28 @@ export interface ICover {
   extraLarge: string | null;
   large: string | null;
   medium: string | null;
+}
+
+export interface ITrailer {
+  id: string;
+  site: string;
+  thumbnail: string;
+}
+
+export interface IMediaConnection {
+  edges?: IMediaEdge[];
+  nodes?: IMedia[];
+  pageInfo?: IPage;
+}
+
+export interface IMediaEdge {
+  node?: IMedia;
+  id: number;
+  relationType: MediaRelation;
+  isMainStudio?: boolean;
+  characters?: any[];
+  characterRole?: any;
+  staffRole?: string;
+  voiceActors?: IStaff[];
+  favouriteOrder?: number;
 }
