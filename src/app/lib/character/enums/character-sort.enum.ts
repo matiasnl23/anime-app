@@ -1,0 +1,9 @@
+export enum CharacterSort {
+  ID = 'ID',
+  ID_DESC = 'ID_DESC',
+  ROLE = 'ROLE',
+  ROLE_DESC = 'ROLE_DESC',
+  SEARCH_MATCH = 'SEARCH_MATCH',
+  FAVOURITES = 'FAVOURITES',
+  FAVOURITES_DESC = 'FAVOURITES_DESC',
+}
