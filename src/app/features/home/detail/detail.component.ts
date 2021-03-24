@@ -34,7 +34,7 @@ export class DetailComponent implements OnInit {
 
   getDetails(media: IMedia): { title: string; value: any }[] {
     const details = [
-      { title: 'Título original', value: media.title.native },
+      { title: 'Título original', value: media.title?.native },
       { title: 'Formato', value: media.format },
       { title: 'Duración', value: media.duration },
       { title: 'Episodios', value: media.episodes },

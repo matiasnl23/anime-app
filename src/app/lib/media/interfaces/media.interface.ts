@@ -1,44 +1,67 @@
+import { CharacterRole } from '../../character/enums/character-role.enum';
+import {
+  ICharacter,
+  ICharacterConnection,
+} from '../../character/interfaces/character.interface';
 import { IDate } from '../../date/interfaces/date.interface';
 import { IPage } from '../../page/interfaces/page.interface';
-import { IStaff } from '../../staff/interfaces/staff.interface';
+import {
+  IStaff,
+  IStaffConnection,
+} from '../../staff/interfaces/staff.interface';
 import { IStudioConnection } from '../../studio/interfaces/studio.interface';
 import { MediaFormat } from '../enums/media-format.enum';
 import { MediaRelation } from '../enums/media-relation.enum';
 import { MediaSeason } from '../enums/media-season.enum';
 import { MediaSource } from '../enums/media-source.enum';
 import { MediaStatus } from '../enums/media-status.enum';
+import { MediaType } from '../enums/media-type.enum';
 
-export interface IMediaMinimalBase {
+export interface IMedia {
   id: number;
-  title: {
-    romaji: string | null;
-    native: string | null;
-    english: string | null;
-  };
+  title?: IMediaTitle;
+  type?: MediaType;
+  format?: MediaFormat;
+  status?: MediaStatus;
+  description?: string;
+  startDate?: IDate;
+  endDate?: IDate;
+  season?: MediaSeason;
+  seasonYear?: number;
+  episodes?: number;
+  duration?: number;
+  chapters?: number;
+  volumes?: number;
+  isLicensed?: boolean;
+  source?: MediaSource;
+  trailer?: ITrailer;
   coverImage: ICover;
-}
+  bannerImage?: string | null;
+  genres?: string[];
+  synonyms?: string[];
 
-export interface IMediaBase extends IMediaMinimalBase {
-  bannerImage: string | null;
-  description: string;
-  episodes: number | null;
-  format: MediaFormat;
-  genres: string[];
-  season: MediaSeason;
-  seasonYear: number;
-  status: MediaStatus;
-}
+  averageScore?: number;
+  meanScore?: number;
+  trending?: number;
 
-export interface IMedia extends IMediaBase {
-  duration: number | null;
-  endDate: IDate;
-  isAdult: boolean;
   relations?: IMediaConnection;
-  source: MediaSource;
-  startDate: IDate;
+  characters?: ICharacterConnection;
+  staff?: IStaffConnection;
   studios?: IStudioConnection;
-  trailer: ITrailer;
-  volumes: number | null;
+
+  isFavourite?: boolean;
+  isAdult: boolean;
+  siteUrl?: string;
+
+  // recommendations?: IRecommendationConnection;
+  // nextAiringEpisode?: IAiringSchedule;
+  // airingSchedule?: IAiringScheduleConnection;
+}
+
+export interface IMediaTitle {
+  romaji: string;
+  english?: string;
+  native?: string;
 }
 
 export interface ICover {
@@ -65,8 +88,8 @@ export interface IMediaEdge {
   id: number;
   relationType: MediaRelation;
   isMainStudio?: boolean;
-  characters?: any[];
-  characterRole?: any;
+  characters?: ICharacter[];
+  characterRole?: CharacterRole;
   staffRole?: string;
   voiceActors?: IStaff[];
   favouriteOrder?: number;

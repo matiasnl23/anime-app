@@ -1,12 +1,7 @@
+import { ICharacterConnection } from '../../character/interfaces/character.interface';
 import { IMediaConnection } from '../../media/interfaces/media.interface';
+import { IPage } from '../../page/interfaces/page.interface';
 import { StaffLanguage } from '../enums/staff.enum';
-
-export interface IStaffEdge {
-  node: any;
-  id: number;
-  role: string;
-  favouriteOrder: number;
-}
 
 export interface IStaff {
   id: number;
@@ -17,10 +12,23 @@ export interface IStaff {
   isFavourite: boolean;
   siteUrl: string;
   staffMedia?: IMediaConnection;
-  //characters?: ICharacterConnection;
+  characters?: ICharacterConnection;
   characterMedia?: IMediaConnection;
   staff: IStaff;
   favourites: number;
+}
+
+export interface IStaffEdge {
+  node: any;
+  id: number;
+  role: string;
+  favouriteOrder: number;
+}
+
+export interface IStaffConnection {
+  edges?: IStaffEdge[];
+  nodes?: IStaff[];
+  pageInfo?: IPage;
 }
 
 export interface IStaffName {
