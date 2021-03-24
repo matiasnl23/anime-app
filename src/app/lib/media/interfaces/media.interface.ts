@@ -1,11 +1,13 @@
 import { IDate } from '../../date/interfaces/date.interface';
 import { IPage } from '../../page/interfaces/page.interface';
 import { IStaff } from '../../staff/interfaces/staff.interface';
+import { IStudioConnection } from '../../studio/interfaces/studio.interface';
 import { MediaFormat } from '../enums/media-format.enum';
 import { MediaRelation } from '../enums/media-relation.enum';
 import { MediaSeason } from '../enums/media-season.enum';
 import { MediaSource } from '../enums/media-source.enum';
 import { MediaStatus } from '../enums/media-status.enum';
+
 export interface IMediaMinimalBase {
   id: number;
   title: {
@@ -31,16 +33,10 @@ export interface IMedia extends IMediaBase {
   duration: number | null;
   endDate: IDate;
   isAdult: boolean;
-  relations: IMediaConnection;
+  relations?: IMediaConnection;
   source: MediaSource;
   startDate: IDate;
-  studios: {
-    nodes: {
-      id: number;
-      name: string;
-      isAnimationStudio: boolean;
-    }[];
-  };
+  studios?: IStudioConnection;
   trailer: ITrailer;
   volumes: number | null;
 }

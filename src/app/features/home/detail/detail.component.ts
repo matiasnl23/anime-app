@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DetailService } from 'src/app/lib/detail/services/detail.service';
 import { ICover, IMedia } from 'src/app/lib/media/interfaces/media.interface';
@@ -45,7 +44,7 @@ export class DetailComponent implements OnInit {
       { title: 'Origen', value: media.source },
       {
         title: 'Estudios',
-        value: media.studios.nodes.map((e) => e.name).join(', '),
+        value: media.studios?.nodes?.map((e) => e.name).join(', '),
       },
     ];
 
