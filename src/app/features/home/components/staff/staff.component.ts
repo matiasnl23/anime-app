@@ -3,7 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MediaService } from 'src/app/lib/media/services/media.service';
-import { IStaffEdge } from 'src/app/lib/staff/interfaces/staff.interface';
+import {
+  IStaff,
+  IStaffEdge,
+} from 'src/app/lib/staff/interfaces/staff.interface';
 
 @Component({
   selector: 'app-staff',
@@ -27,5 +30,13 @@ export class StaffComponent implements OnInit {
     this.staff$ = this.mediaService
       .getStaff(this.id)
       .pipe(map((response) => response.data.Media.staff?.edges || []));
+  }
+
+  getImage(staff: IStaff): string | null {
+    return staff.image.large || staff.image.medium || null;
+  }
+
+  getName(staff: IStaff): string | null {
+    return staff.name.full || null;
   }
 }
