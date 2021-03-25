@@ -84,8 +84,8 @@ export interface IMediaConnection {
 }
 
 export interface IMediaEdge {
-  node?: IMedia;
   id: number;
+  node: IMedia;
   relationType: MediaRelation;
   isMainStudio?: boolean;
   characters?: ICharacter[];

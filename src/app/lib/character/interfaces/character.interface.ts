@@ -18,8 +18,8 @@ export interface ICharacter {
 }
 
 export interface ICharacterEdge {
-  node?: ICharacter;
   id: number;
+  node: ICharacter;
   role?: CharacterRole;
   voiceActors?: IStaff[];
   media?: IMedia[];

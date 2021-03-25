@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ICharacterEdge } from 'src/app/lib/character/interfaces/character.interface';
+import {
+  ICharacter,
+  ICharacterEdge,
+} from 'src/app/lib/character/interfaces/character.interface';
 import { MediaService } from 'src/app/lib/media/services/media.service';
 
 @Component({
@@ -27,5 +30,19 @@ export class CharactersComponent implements OnInit {
     this.characters$ = this.mediaService
       .getCharacters(this.id)
       .pipe(map((response) => response.data.Media.characters?.edges || []));
+  }
+
+  getCharacterImage(character: ICharacter): string | null {
+    return character.image.large || character.image.medium || null;
+  }
+
+  getVoiceActorName(edge: ICharacterEdge): string {
+    return edge.voiceActors?.length ? edge.voiceActors[0].name.full : '';
+  }
+
+  getVoiceActorImage(edge: ICharacterEdge): string | null {
+    return edge.voiceActors?.length
+      ? edge.voiceActors[0].image.large || edge.voiceActors[0].image.medium
+      : null;
   }
 }

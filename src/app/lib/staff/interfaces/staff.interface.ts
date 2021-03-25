@@ -19,8 +19,8 @@ export interface IStaff {
 }
 
 export interface IStaffEdge {
-  node: any;
   id: number;
+  node: IStaff;
   role: string;
   favouriteOrder: number;
 }

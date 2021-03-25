@@ -1,3 +1,27 @@
-:host * {
-  color: white;
+@import "~src/theme";
+
+.characters-container {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr;
+
+  .card {
+    display: flex;
+    flex-direction: row;
+
+    img {
+      height: 100px;
+      min-height: 100px;
+      min-width: 75px;
+      object-fit: cover;
+      width: 75px;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .characters-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
