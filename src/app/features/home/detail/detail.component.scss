@@ -30,25 +30,6 @@
   width: 100%;
 }
 
-.relations {
-  .card {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-
-    img {
-      height: 80px;
-      width: 60px;
-      object-fit: cover;
-    }
-
-    div {
-      overflow: hidden;
-      padding: 0 1rem;
-    }
-  }
-}
-
 @include media-breakpoint-up(sm) {
   .banner {
     height: 300px;
