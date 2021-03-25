@@ -8,10 +8,13 @@ import { CardsGridComponent } from './components/cards-grid/cards-grid.component
 import { TopItemComponent } from './components/top-item/top-item.component';
 import { DetailComponent } from './detail/detail.component';
 import { TopMediaComponent } from './top-media/top-media.component';
+import { CharactersComponent } from './components/characters/characters.component';
+import { RelationsComponent } from './components/relations/relations.component';
+import { StaffComponent } from './components/staff/staff.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, NavbarComponent, CardsGridComponent, TopItemComponent, DetailComponent, TopMediaComponent],
+  declarations: [HomeComponent, NavbarComponent, CardsGridComponent, TopItemComponent, DetailComponent, TopMediaComponent, CharactersComponent, RelationsComponent, StaffComponent],
   imports: [
     CommonModule,
     HomeRoutingModule

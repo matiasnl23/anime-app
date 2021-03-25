@@ -49,28 +49,20 @@
         </div>
       </div>
 
-      <div class="relations d-flex mt-2 table-responsive">
-        <div *ngFor="let rl of media.relations?.edges; first as isFirst">
-          <div
-            [routerLink]="['/', 'detail', rl.node?.id]"
-            class="card"
-            [class.ml-2]="!isFirst"
-            style="cursor: pointer; width: 250px"
-          >
-            <img *ngIf="rl.node" [src]="getCoverImage(rl.node.coverImage)" />
-            <div>
-              <h6 class="text-truncate">{{ rl.node?.title?.romaji }}</h6>
-              <p class="text-truncate m-0 small">
-                {{ rl.node?.title?.native }}
-              </p>
-              <br />
-              <p class="m-0">{{ rl.relationType }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!--Router-->
+      <ul class="nav nav-tabs mt-2">
+        <li *ngFor="let route of getRoutes()" class="nav-item">
+          <a
+            [routerLink]="route.path"
+            routerLinkActive="active"
+            class="nav-link"
+            >{{ route.data?.name }}</a
+          >
+        </li>
+      </ul>
+      <div class="mt-2">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>

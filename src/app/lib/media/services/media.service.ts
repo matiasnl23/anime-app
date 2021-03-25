@@ -1,7 +1,15 @@
 import { Injectable } from '@angular/core';
+import { ApolloQueryResult } from '@apollo/client/core';
 import { Apollo } from 'apollo-angular';
+import { Observable } from 'rxjs';
 import { StaffLanguage } from '../../staff/enums/staff.enum';
-import { getCharactersQuery } from '../queries/media.query';
+import { IMedia } from '../interfaces/media.interface';
+import {
+  getCharactersQuery,
+  getRelationsQuery,
+  getStaffQuery,
+  getStudiosQuery,
+} from '../queries/media.query';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +17,11 @@ import { getCharactersQuery } from '../queries/media.query';
 export class MediaService {
   constructor(private apollo: Apollo) {}
 
-  getCharacters(id: number, language: StaffLanguage = StaffLanguage.JAPANESE) {
-    return this.apollo.watchQuery({
+  getCharacters(
+    id: number,
+    language: StaffLanguage = StaffLanguage.JAPANESE
+  ): Observable<ApolloQueryResult<IMediaResponse>> {
+    return this.apollo.watchQuery<IMediaResponse>({
       query: getCharactersQuery,
       variables: {
         id,
@@ -18,4 +29,35 @@ export class MediaService {
       },
     }).valueChanges;
   }
+
+  getStaff(id: number): Observable<ApolloQueryResult<IMediaResponse>> {
+    return this.apollo.watchQuery<IMediaResponse>({
+      query: getStaffQuery,
+      variables: {
+        id,
+      },
+    }).valueChanges;
+  }
+
+  getStudios(id: number): Observable<ApolloQueryResult<IMediaResponse>> {
+    return this.apollo.watchQuery<IMediaResponse>({
+      query: getStudiosQuery,
+      variables: {
+        id,
+      },
+    }).valueChanges;
+  }
+
+  getRelations(id: number): Observable<ApolloQueryResult<IMediaResponse>> {
+    return this.apollo.watchQuery<IMediaResponse>({
+      query: getRelationsQuery,
+      variables: {
+        id,
+      },
+    }).valueChanges;
+  }
+}
+
+export interface IMediaResponse {
+  Media: IMedia;
 }

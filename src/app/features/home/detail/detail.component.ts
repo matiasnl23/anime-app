@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ICharacterConnection } from 'src/app/lib/character/interfaces/character.interface';
 import { DetailService } from 'src/app/lib/detail/services/detail.service';
 import { ICover, IMedia } from 'src/app/lib/media/interfaces/media.interface';
+import { MediaService } from 'src/app/lib/media/services/media.service';
 
 @Component({
   selector: 'app-detail',
@@ -10,10 +13,13 @@ import { ICover, IMedia } from 'src/app/lib/media/interfaces/media.interface';
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
+  characters$?: Observable<ICharacterConnection | null>;
+
   media?: IMedia;
 
   constructor(
     private detailService: DetailService,
+    private mediaService: MediaService,
     private route: ActivatedRoute
   ) {}
 
@@ -24,6 +30,8 @@ export class DetailComponent implements OnInit {
         .getFullData(params.id)
         .pipe(map((r) => r.data.Media))
         .subscribe((media) => (this.media = media));
+
+      this.getCharacters(params.id);
     });
   }
 
@@ -49,5 +57,15 @@ export class DetailComponent implements OnInit {
     ];
 
     return details.filter((d) => d.value);
+  }
+
+  getCharacters(id: number): void {
+    this.characters$ = this.mediaService
+      .getCharacters(id)
+      .pipe(map((response) => response.data.Media.characters || null));
+  }
+
+  getRoutes() {
+    return this.route.routeConfig?.children?.filter((r) => r.path !== '**');
   }
 }

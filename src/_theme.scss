@@ -6,6 +6,8 @@ $body-bg: #283149;
 $body-color: #dbedf3;
 $headings-margin-bottom: 0;
 
+$main-color: #404b69;
+
 //$theme-colors: (
 //"primary": #000,
 //);
@@ -19,11 +21,26 @@ $enable-rounded: false;
 @import "bootstrap";
 
 .card {
-  background-color: #404b69;
+  background-color: $main-color;
   border: none;
 
   .card-body {
-    background-color: #404b69;
+    background-color: $main-color;
     border: none;
+  }
+}
+
+.nav.nav-tabs {
+  border-color: $main-color;
+
+  .nav-item {
+    .nav-link {
+      color: white;
+
+      &.active {
+        background-color: $main-color;
+        border-color: $main-color;
+      }
+    }
   }
 }
