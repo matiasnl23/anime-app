@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IMediaEdge } from 'src/app/lib/media/interfaces/media.interface';
+import {
+  IMedia,
+  IMediaEdge,
+} from 'src/app/lib/media/interfaces/media.interface';
 import { MediaService } from 'src/app/lib/media/services/media.service';
 
 @Component({
@@ -27,5 +30,10 @@ export class RelationsComponent implements OnInit {
     this.relations$ = this.mediaService
       .getRelations(this.id)
       .pipe(map((response) => response.data.Media.relations?.edges || []));
+  }
+
+  getCover(media: IMedia): string | null {
+    const { extraLarge, large, medium } = media.coverImage;
+    return extraLarge || large || medium || null;
   }
 }

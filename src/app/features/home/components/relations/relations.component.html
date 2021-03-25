@@ -1,3 +1,14 @@
-<pre>
-  {{ relations$ | async | json }}
-</pre>
+<div class="relations-container">
+  <div
+    *ngFor="let relation of relations$ | async"
+    class="card d-flex flex-row"
+    [routerLink]="['/', 'detail', relation.node.id]"
+    style="cursor: pointer"
+  >
+    <img *ngIf="getCover(relation.node)" [src]="getCover(relation.node)" />
+    <div class="d-flex flex-column p-2">
+      <p class="small m-0">{{ relation.node.title?.romaji }}</p>
+      <p class="small m-0 mt-auto">{{ relation.relationType }}</p>
+    </div>
+  </div>
+</div>
