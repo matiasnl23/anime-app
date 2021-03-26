@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { ApolloQueryResult } from '@apollo/client/core';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { IAiringScheduleConnection } from '../../airing-schedule/interfaces/airing-schedule.interface';
 import { StaffLanguage } from '../../staff/enums/staff.enum';
 import { IMedia } from '../interfaces/media.interface';
 import {
+  getAiringSchedules,
   getCharactersQuery,
   getRelationsQuery,
   getStaffQuery,
@@ -55,6 +58,21 @@ export class MediaService {
         id,
       },
     }).valueChanges;
+  }
+
+  getAiringSchedules(
+    id: number
+  ): Observable<IAiringScheduleConnection | undefined> {
+    return this.apollo
+      .watchQuery<IMediaResponse>({
+        query: getAiringSchedules,
+        variables: {
+          id,
+        },
+      })
+      .valueChanges.pipe(
+        map((response) => response.data.Media?.airingSchedule)
+      );
   }
 }
 

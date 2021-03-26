@@ -1,5 +1,27 @@
 import { gql } from 'apollo-angular';
 
+export const getAiringSchedules = gql`
+  query($id: Int) {
+    Media(id: $id) {
+      airingSchedule {
+        nodes {
+          id
+          airingAt
+          timeUntilAiring
+          episode
+        }
+        pageInfo {
+          total
+          perPage
+          currentPage
+          lastPage
+          hasNextPage
+        }
+      }
+    }
+  }
+`;
+
 export const getRelationsQuery = gql`
   query($id: Int) {
     Media(id: $id) {
