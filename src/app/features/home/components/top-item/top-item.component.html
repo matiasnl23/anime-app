@@ -1,4 +1,4 @@
-<div routerLink="/detail/{{ item.id }}" class="small-card">
+<div (click)="goToDescription()" class="small-card">
   <img [src]="getCoverImage" [alt]="item.title.romaji" loading="lazy" />
 
   <div class="info py-2">
