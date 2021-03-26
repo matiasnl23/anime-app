@@ -1,3 +1,7 @@
+import {
+  IAiringSchedule,
+  IAiringScheduleConnection,
+} from '../../airing-schedule/interfaces/airing-schedule.interface';
 import { CharacterRole } from '../../character/enums/character-role.enum';
 import {
   ICharacter,
@@ -54,8 +58,8 @@ export interface IMedia {
   siteUrl?: string;
 
   // recommendations?: IRecommendationConnection;
-  // nextAiringEpisode?: IAiringSchedule;
-  // airingSchedule?: IAiringScheduleConnection;
+  nextAiringEpisode?: IAiringSchedule;
+  airingSchedule?: IAiringScheduleConnection;
 }
 
 export interface IMediaTitle {
