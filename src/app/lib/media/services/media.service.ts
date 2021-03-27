@@ -23,6 +23,7 @@ export class MediaService {
 
   getCharacters(
     id: number,
+    page: number = 1,
     language: StaffLanguage = StaffLanguage.JAPANESE
   ): Observable<ICharacterConnection | undefined> {
     return this.apollo
@@ -31,6 +32,7 @@ export class MediaService {
         variables: {
           id,
           language,
+          page,
         },
       })
       .valueChanges.pipe(map((response) => response.data.Media?.characters));

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { first, map, tap } from 'rxjs/operators';
 import {
   ICharacter,
   ICharacterEdge,
@@ -16,23 +15,38 @@ import { MediaService } from 'src/app/lib/media/services/media.service';
 export class CharactersComponent implements OnInit {
   id: number;
 
-  characters$?: Observable<ICharacterEdge[]>;
+  characters: ICharacterEdge[] = [];
 
   currentPage: number = 1;
+
+  hasNextPage: boolean = false;
+
+  loading: boolean = false;
 
   constructor(private mediaService: MediaService, route: ActivatedRoute) {
     this.id = route.parent?.snapshot.params?.id;
   }
 
   ngOnInit(): void {
-    this.characters();
+    this.getCharacters();
   }
 
-  characters(): void {
-    this.characters$ = this.mediaService.getCharacters(this.id).pipe(
-      //tap(console.log),
-      map((characterConnection) => characterConnection?.edges || [])
-    );
+  getCharacters(page: number = 1): void {
+    this.loading = true;
+
+    this.mediaService
+      .getCharacters(this.id, page)
+      .pipe(
+        first(),
+        tap((result) => {
+          this.currentPage = result?.pageInfo?.currentPage || 1;
+          this.hasNextPage = result?.pageInfo?.hasNextPage || false;
+        }),
+        map((characterConnection) => characterConnection?.edges || [])
+      )
+      .subscribe(
+        (characters) => (this.characters = [...this.characters, ...characters])
+      );
   }
 
   getCharacterImage(character: ICharacter): string | null {

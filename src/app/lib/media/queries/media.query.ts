@@ -110,9 +110,9 @@ export const getStaffQuery = gql`
 `;
 
 export const getCharactersQuery = gql`
-  query($id: Int, $language: StaffLanguage) {
+  query($id: Int, $language: StaffLanguage, $page: Int) {
     Media(id: $id) {
-      characters {
+      characters(page: $page) {
         edges {
           role
           node {
