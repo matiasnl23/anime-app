@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import {
   ICharacter,
   ICharacterEdge,
@@ -18,6 +18,8 @@ export class CharactersComponent implements OnInit {
 
   characters$?: Observable<ICharacterEdge[]>;
 
+  currentPage: number = 1;
+
   constructor(private mediaService: MediaService, route: ActivatedRoute) {
     this.id = route.parent?.snapshot.params?.id;
   }
@@ -27,9 +29,10 @@ export class CharactersComponent implements OnInit {
   }
 
   characters(): void {
-    this.characters$ = this.mediaService
-      .getCharacters(this.id)
-      .pipe(map((response) => response.data.Media.characters?.edges || []));
+    this.characters$ = this.mediaService.getCharacters(this.id).pipe(
+      //tap(console.log),
+      map((characterConnection) => characterConnection?.edges || [])
+    );
   }
 
   getCharacterImage(character: ICharacter): string | null {
