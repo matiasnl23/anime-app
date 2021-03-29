@@ -6,7 +6,7 @@
     style="cursor: pointer"
   >
     <img *ngIf="leftImage" [src]="leftImage" loading="lazy" />
-    <div class="d-flex flex-column px-1 py-2">
+    <div class="d-flex flex-column pl-2 py-2">
       <p class="small">{{ leftTitle }}</p>
       <p class="small mt-auto">{{ leftSecondary }}</p>
     </div>
@@ -17,7 +17,7 @@
     (click)="onClick('right')"
     style="cursor: pointer"
   >
-    <div class="d-flex flex-column px-1 py-2">
+    <div class="d-flex flex-column pr-2 py-2">
       <p class="small">{{ rightTitle }}</p>
       <p class="small mt-auto">{{ rightSecondary }}</p>
     </div>
