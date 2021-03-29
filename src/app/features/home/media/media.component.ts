@@ -19,7 +19,6 @@ export class MediaComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      console.log(params);
       this.detailService
         .getFullData(params.id)
         .pipe(map((r) => r.data.Media))
