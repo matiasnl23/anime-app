@@ -1,8 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ICharacterEdge } from 'src/app/lib/character/interfaces/character.interface';
+import {
+  ICharacter,
+  ICharacterEdge,
+} from 'src/app/lib/character/interfaces/character.interface';
+import { IMedia } from 'src/app/lib/media/interfaces/media.interface';
+import { ScrollService } from 'src/app/lib/scroll/services/scroll.service';
 import { StaffService } from 'src/app/lib/staff/services/staff.service';
 
 @Component({
@@ -23,12 +28,18 @@ export class CharactersComponent implements OnInit, OnDestroy {
 
   subscriptions = new Subscription();
 
-  constructor(private staffService: StaffService, route: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    private scrollService: ScrollService,
+    private staffService: StaffService,
+    route: ActivatedRoute
+  ) {
     this.id = route.parent?.snapshot.params.id;
   }
 
   ngOnInit(): void {
     this.getCharacters();
+    this.getScroll();
   }
 
   ngOnDestroy(): void {
@@ -52,5 +63,39 @@ export class CharactersComponent implements OnInit, OnDestroy {
         this.characters = [...this.characters, ...result];
         this.loading = false;
       });
+  }
+
+  getCharacterImage(character: ICharacter): string | undefined {
+    return character.image.large || character.image.medium;
+  }
+
+  getMediaImage(media: IMedia): string | undefined {
+    if (!media) return;
+
+    const { extraLarge, large, medium } = media.coverImage;
+    return extraLarge || large || medium || undefined;
+  }
+
+  getMediaYear(media: IMedia): string | undefined {
+    return media.seasonYear ? `${media.seasonYear}` : undefined;
+  }
+
+  getScroll() {
+    this.subscriptions.add(
+      this.scrollService.percentScroll().subscribe((percentValue) => {
+        if (!this.loading && this.hasNextPage && percentValue > 80) {
+          this.getCharacters(this.currentPage + 1);
+        }
+      })
+    );
+  }
+
+  onClick(e: { id: number; element: string }) {
+    const item = this.characters[e.id];
+
+    if (e.element === 'right') {
+      this.router.navigate(['/', 'detail', item.media![0].id]);
+      return;
+    }
   }
 }

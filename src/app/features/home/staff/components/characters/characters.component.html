@@ -1,1 +1,13 @@
-<p>CharactersComponent works!</p>
+<div class="items-container">
+  <ui-short-item
+    *ngFor="let item of characters; index as index"
+    (elementClick)="onClick($event)"
+    [id]="index"
+    [leftImage]="getCharacterImage(item.node)"
+    [leftTitle]="item.node.name.full"
+    [leftSecondary]="item.role"
+    [rightImage]="getMediaImage(item.media![0])"
+    [rightTitle]="item.media![0].title!.romaji"
+    [rightSecondary]="getMediaYear(item.media![0])"
+  ></ui-short-item>
+</div>

@@ -1,0 +1,13 @@
+@import "~src/theme";
+
+.items-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@include media-breakpoint-up(lg) {
+  .items-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}

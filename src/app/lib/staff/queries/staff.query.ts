@@ -58,9 +58,9 @@ export const getStaffMediaQuery = gql`
 `;
 
 export const getStaffCharacters = gql`
-  query($id: Int) {
+  query($id: Int, $page: Int) {
     Staff(id: $id) {
-      characters {
+      characters(page: $page, sort: [ID]) {
         edges {
           node {
             id
@@ -89,6 +89,7 @@ export const getStaffCharacters = gql`
               large
               medium
             }
+            seasonYear
           }
           favouriteOrder
         }
