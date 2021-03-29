@@ -1,14 +1,10 @@
 <div class="relations-container">
-  <div
-    *ngFor="let relation of relations$ | async"
-    class="card d-flex flex-row"
-    [routerLink]="['/', 'detail', relation.node.id]"
-    style="cursor: pointer"
-  >
-    <img *ngIf="getCover(relation.node)" [src]="getCover(relation.node)" />
-    <div class="d-flex flex-column p-2">
-      <p class="small m-0">{{ relation.node.title?.romaji }}</p>
-      <p class="small m-0 mt-auto">{{ relation.relationType }}</p>
-    </div>
-  </div>
+  <ui-short-item
+    *ngFor="let relation of relations; index as index"
+    [id]="index"
+    (elementClick)="onClick($event)"
+    [leftImage]="getCover(relation.node)"
+    [leftTitle]="relation.node.title?.romaji"
+    [leftSecondary]="relation.relationType"
+  ></ui-short-item>
 </div>

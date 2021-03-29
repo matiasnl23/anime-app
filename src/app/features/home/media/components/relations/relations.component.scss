@@ -3,14 +3,6 @@
 .relations-container {
   display: grid;
   gap: 0.5rem;
-
-  img {
-    height: 100px;
-    min-height: 100px;
-    min-width: 75px;
-    object-fit: cover;
-    width: 75px;
-  }
 }
 
 @include media-breakpoint-up(lg) {

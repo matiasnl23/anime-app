@@ -70,9 +70,9 @@ export interface IMediaTitle {
 
 export interface ICover {
   color: string | null;
-  extraLarge: string | null;
-  large: string | null;
-  medium: string | null;
+  extraLarge?: string;
+  large?: string;
+  medium?: string;
 }
 
 export interface ITrailer {
