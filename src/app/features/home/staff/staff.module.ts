@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { UIModule } from 'src/app/ui/ui.module';
+import { UIModule } from '@ui/ui.module';
 import { CharactersComponent } from './components/characters/characters.component';
 import { MediaComponent } from './components/media/media.component';
 import { StaffRoutingModule } from './staff-routing.module';

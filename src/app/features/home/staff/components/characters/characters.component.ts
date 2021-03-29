@@ -1,14 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ICharacter, ICharacterEdge } from '@lib/character';
+import { IMedia } from '@lib/media';
+import { ScrollService } from '@lib/scroll';
+import { StaffService } from '@lib/staff';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {
-  ICharacter,
-  ICharacterEdge,
-} from 'src/app/lib/character/interfaces/character.interface';
-import { IMedia } from 'src/app/lib/media/interfaces/media.interface';
-import { ScrollService } from 'src/app/lib/scroll/services/scroll.service';
-import { StaffService } from 'src/app/lib/staff/services/staff.service';
 
 @Component({
   selector: 'app-component',

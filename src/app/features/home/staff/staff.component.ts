@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IStaff, StaffService } from '@lib/staff';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IStaff } from 'src/app/lib/staff/interfaces/staff.interface';
-import { StaffService } from 'src/app/lib/staff/services/staff.service';
 
 @Component({
   selector: 'app-staff',
