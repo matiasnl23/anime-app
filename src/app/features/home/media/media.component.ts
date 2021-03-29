@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ICover, IMedia } from '@lib/media';
 import { map } from 'rxjs/operators';
 import { DetailService } from 'src/app/lib/detail/services/detail.service';
-import { ICover, IMedia } from 'src/app/lib/media/interfaces/media.interface';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss'],
+  selector: 'app-media',
+  templateUrl: './media.component.html',
+  styleUrls: ['./media.component.scss'],
 })
-export class DetailComponent implements OnInit {
+export class MediaComponent implements OnInit {
   media?: IMedia;
 
   constructor(

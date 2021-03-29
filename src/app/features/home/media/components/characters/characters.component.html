@@ -1,0 +1,12 @@
+<div class="characters-container">
+  <ui-short-item
+    *ngFor="let character of characters; index as index"
+    (elementClick)="onClick($event)"
+    [id]="index"
+    [leftImage]="getCharacterImage(character.node)"
+    [leftTitle]="character.node.name.full"
+    [leftSecondary]="character.role"
+    [rightImage]="getVoiceActorImage(character)"
+    [rightTitle]="getVoiceActorName(character)"
+  ></ui-short-item>
+</div>

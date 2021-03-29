@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { first, map, tap } from 'rxjs/operators';
 import {
@@ -29,6 +29,7 @@ export class CharactersComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private mediaService: MediaService,
+    private router: Router,
     private scrollService: ScrollService,
     route: ActivatedRoute
   ) {
@@ -66,8 +67,8 @@ export class CharactersComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
-  getCharacterImage(character: ICharacter): string | null {
-    return character.image.large || character.image.medium || null;
+  getCharacterImage(character: ICharacter): string | undefined {
+    return character.image.large || character.image.medium;
   }
 
   getScroll(): void {
@@ -84,9 +85,18 @@ export class CharactersComponent implements OnInit, AfterViewInit, OnDestroy {
     return edge.voiceActors?.length ? edge.voiceActors[0].name.full : '';
   }
 
-  getVoiceActorImage(edge: ICharacterEdge): string | null {
-    return edge.voiceActors?.length
-      ? edge.voiceActors[0].image.large || edge.voiceActors[0].image.medium
-      : null;
+  getVoiceActorImage(edge: ICharacterEdge): string | undefined {
+    return (
+      edge.voiceActors![0].image.large || edge.voiceActors![0].image.medium
+    );
+  }
+
+  onClick(e: { id: number; element: string }): void {
+    let item = this.characters[e.id];
+
+    if (e.element === 'right') {
+      this.router.navigate(['/', 'staff', item.voiceActors![0].id]);
+      return;
+    }
   }
 }

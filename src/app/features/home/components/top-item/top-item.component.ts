@@ -16,7 +16,7 @@ export class TopItemComponent implements OnInit {
   ngOnInit(): void {}
 
   goToDescription(): void {
-    this.router.navigateByUrl(`/detail/${this.item.id}`);
+    this.router.navigateByUrl(`/media/${this.item.id}`);
   }
 
   get getCoverImage(): string | null {
