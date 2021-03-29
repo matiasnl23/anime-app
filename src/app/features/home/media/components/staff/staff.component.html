@@ -1,18 +1,10 @@
 <div class="staff-container">
-  <div
-    *ngFor="let s of staff"
-    class="card d-flex flex-row"
-    [routerLink]="['/', 'staff', s.node.id]"
-    style="cursor: pointer"
-  >
-    <img
-      *ngIf="getImage(s.node)"
-      [src]="getImage(s.node)"
-      [alt]="getName(s.node)"
-    />
-    <div class="d-flex flex-column px-2 py-2">
-      <p class="m-0">{{ getName(s.node) }}</p>
-      <p class="small m-0 mt-auto">{{ s.role }}</p>
-    </div>
-  </div>
+  <ui-short-item
+    *ngFor="let s of staff; index as index"
+    (elementClick)="onClick($event)"
+    [id]="index"
+    [leftImage]="getImage(s.node)"
+    [leftTitle]="getName(s.node)"
+    [leftSecondary]="s.role"
+  ></ui-short-item>
 </div>

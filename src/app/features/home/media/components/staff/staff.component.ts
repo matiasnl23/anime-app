@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { MediaService } from 'src/app/lib/media/services/media.service';
@@ -29,6 +29,7 @@ export class StaffComponent implements OnInit, OnDestroy {
 
   constructor(
     private mediaService: MediaService,
+    private router: Router,
     private scrollService: ScrollService,
     route: ActivatedRoute
   ) {
@@ -65,12 +66,12 @@ export class StaffComponent implements OnInit, OnDestroy {
       });
   }
 
-  getImage(staff: IStaff): string | null {
-    return staff.image.large || staff.image.medium || null;
+  getImage(staff: IStaff): string | undefined {
+    return staff.image.large || staff.image.medium;
   }
 
-  getName(staff: IStaff): string | null {
-    return staff.name.full || null;
+  getName(staff: IStaff): string | undefined {
+    return staff.name.full;
   }
 
   getScroll(): void {
@@ -81,5 +82,10 @@ export class StaffComponent implements OnInit, OnDestroy {
         }
       })
     );
+  }
+
+  onClick(e: { id: number; element: string }): void {
+    const item = this.staff[e.id];
+    this.router.navigate(['/', 'staff', item.node.id]);
   }
 }
