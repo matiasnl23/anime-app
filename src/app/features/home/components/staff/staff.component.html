@@ -1,5 +1,5 @@
 <div class="staff-container">
-  <div *ngFor="let s of staff$ | async" class="card d-flex flex-row">
+  <div *ngFor="let s of staff" class="card d-flex flex-row">
     <img
       *ngIf="getImage(s.node)"
       [src]="getImage(s.node)"

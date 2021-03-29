@@ -38,11 +38,15 @@ export class MediaService {
       .valueChanges.pipe(map((response) => response.data.Media?.characters));
   }
 
-  getStaff(id: number): Observable<ApolloQueryResult<IMediaResponse>> {
+  getStaff(
+    id: number,
+    page: number = 1
+  ): Observable<ApolloQueryResult<IMediaResponse>> {
     return this.apollo.watchQuery<IMediaResponse>({
       query: getStaffQuery,
       variables: {
         id,
+        page,
       },
     }).valueChanges;
   }

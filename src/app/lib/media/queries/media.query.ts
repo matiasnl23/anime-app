@@ -79,9 +79,9 @@ export const getStudiosQuery = gql`
 `;
 
 export const getStaffQuery = gql`
-  query($id: Int) {
+  query($id: Int, $page: Int) {
     Media(id: $id) {
-      staff {
+      staff(page: $page) {
         edges {
           role
           node {
