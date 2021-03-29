@@ -15,12 +15,19 @@ export class StaffComponent implements OnInit {
 
   staff$?: Observable<IStaff>;
 
-  constructor(private staffService: StaffService, route: ActivatedRoute) {
+  constructor(
+    private route: ActivatedRoute,
+    private staffService: StaffService
+  ) {
     this.id = route.snapshot.params.id;
   }
 
   ngOnInit(): void {
     this.getStaff$();
+  }
+
+  getRoutes() {
+    return this.route.routeConfig?.children?.filter((r) => r.path !== '**');
   }
 
   getStaff$() {

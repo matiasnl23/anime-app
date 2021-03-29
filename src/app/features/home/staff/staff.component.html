@@ -19,6 +19,21 @@
           <div [innerHtml]="staff.description"></div>
         </div>
       </div>
+
+      <!--Router-->
+      <ul class="nav nav-tabs mt-2">
+        <li *ngFor="let route of getRoutes()" class="nav-item">
+          <a
+            [routerLink]="route.path"
+            routerLinkActive="active"
+            class="nav-link"
+            >{{ route.data?.name }}</a
+          >
+        </li>
+      </ul>
+      <div class="mt-2">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>
