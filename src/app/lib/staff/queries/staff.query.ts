@@ -50,7 +50,7 @@ export const getStaffMediaQuery = gql`
           total
           perPage
           lastPage
-          hastNextPage
+          hasNextPage
         }
       }
     }
@@ -62,7 +62,7 @@ export const getStaffCharacters = gql`
     Staff(id: $id) {
       characters {
         edges {
-          edges {
+          node {
             id
             name {
               first
@@ -96,7 +96,7 @@ export const getStaffCharacters = gql`
           total
           perPage
           lastPage
-          hastNextPage
+          hasNextPage
         }
       }
     }
