@@ -91,7 +91,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
     const item = this.characters[e.id];
 
     if (e.element === 'right') {
-      this.router.navigate(['/', 'detail', item.media![0].id]);
+      this.router.navigate(['/', 'media', item.media![0].id]);
       return;
     }
   }
