@@ -1,34 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { first, map, tap } from 'rxjs/operators';
 import {
   ICharacter,
   ICharacterEdge,
 } from 'src/app/lib/character/interfaces/character.interface';
 import { MediaService } from 'src/app/lib/media/services/media.service';
+import { ScrollService } from 'src/app/lib/scroll/services/scroll.service';
 
 @Component({
   selector: 'app-characters',
   templateUrl: './characters.component.html',
   styleUrls: ['./characters.component.scss'],
 })
-export class CharactersComponent implements OnInit {
+export class CharactersComponent implements OnInit, AfterViewInit, OnDestroy {
   id: number;
 
   characters: ICharacterEdge[] = [];
 
-  currentPage: number = 1;
+  currentPage = 1;
 
-  hasNextPage: boolean = false;
+  hasNextPage = false;
 
-  loading: boolean = false;
+  loading = false;
 
-  constructor(private mediaService: MediaService, route: ActivatedRoute) {
+  subscriptions = new Subscription();
+
+  constructor(
+    private mediaService: MediaService,
+    private scrollService: ScrollService,
+    route: ActivatedRoute
+  ) {
     this.id = route.parent?.snapshot.params?.id;
   }
 
   ngOnInit(): void {
     this.getCharacters();
+  }
+
+  ngAfterViewInit(): void {
+    this.getScroll();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   getCharacters(page: number = 1): void {
@@ -44,13 +60,24 @@ export class CharactersComponent implements OnInit {
         }),
         map((characterConnection) => characterConnection?.edges || [])
       )
-      .subscribe(
-        (characters) => (this.characters = [...this.characters, ...characters])
-      );
+      .subscribe((characters) => {
+        this.characters = [...this.characters, ...characters];
+        this.loading = false;
+      });
   }
 
   getCharacterImage(character: ICharacter): string | null {
     return character.image.large || character.image.medium || null;
+  }
+
+  getScroll(): void {
+    this.subscriptions.add(
+      this.scrollService.percentScroll().subscribe((viewPercent) => {
+        if (this.hasNextPage && !this.loading && viewPercent > 80) {
+          this.getCharacters(this.currentPage + 1);
+        }
+      })
+    );
   }
 
   getVoiceActorName(edge: ICharacterEdge): string {
