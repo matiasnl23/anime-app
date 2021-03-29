@@ -10,7 +10,12 @@
         <p class="small m-0 mt-auto">{{ character.role }}</p>
       </div>
     </div>
-    <div class="staff-side text-right d-flex ml-auto">
+    <div
+      *ngIf="character.voiceActors![0]"
+      class="staff-side text-right d-flex ml-auto"
+      [routerLink]="['/', 'staff', character.voiceActors![0].id]"
+      style="cursor: pointer"
+    >
       <div class="px-1 py-2">
         <p class="small m-0">{{ getVoiceActorName(character) }}</p>
       </div>
