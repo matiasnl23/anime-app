@@ -16,7 +16,7 @@ export const getStaffQuery = gql`
         large
         medium
       }
-      description
+      description(asHtml: true)
       siteUrl
       favourites
     }

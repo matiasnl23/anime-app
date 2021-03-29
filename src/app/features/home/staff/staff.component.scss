@@ -1,0 +1,28 @@
+@import "~src/theme";
+
+.image-and-action {
+  align-items: flex-end;
+  display: flex;
+  margin-top: 0;
+
+  img {
+    height: 150px;
+    object-fit: cover;
+    width: 100px;
+  }
+}
+
+.actions {
+  column-gap: 0.5rem;
+  display: flex;
+  width: 100%;
+}
+
+@include media-breakpoint-up(sm) {
+  .image-and-action {
+    img {
+      height: unset;
+      width: 100%;
+    }
+  }
+}

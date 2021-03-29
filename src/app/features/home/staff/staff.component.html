@@ -1,1 +1,24 @@
-<p>StaffComponent works! {{ id }}</p>
+<div *ngIf="staff$ | async as staff">
+  <div class="row px-2 px-wm-4">
+    <div class="col-12 col-sm-4 col-md-3">
+      <div class="image-and-action d-flex d-sm-block">
+        <img [src]="staff.image.large" alt="" />
+        <div class="actions ml-2 ml-sm-0 mt-sm-2">
+          <div class="btn btn-primary w-100">Añadir</div>
+          <div class="btn btn-danger">C</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-8 col-md-9 py-2 pt-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ staff.name.full }} ({{ staff.name.native }})
+          </h5>
+          <div [innerHtml]="staff.description"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
