@@ -1,4 +1,8 @@
 <div class="relations-container">
+  <ui-alert *ngIf="relations.length === 0" type="dark">
+    No se encontraron resultados
+  </ui-alert>
+
   <ui-short-item
     *ngFor="let relation of relations; index as index"
     [id]="index"

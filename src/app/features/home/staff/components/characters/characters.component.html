@@ -1,4 +1,8 @@
 <div class="items-container">
+  <ui-alert *ngIf="!loading && characters.length === 0" type="dark">
+    No se encontraron resultados
+  </ui-alert>
+
   <ui-short-item
     *ngFor="let item of characters; index as index"
     (elementClick)="onClick($event)"

@@ -1,4 +1,8 @@
 <div class="staff-container">
+  <ui-alert *ngIf="!loading && staff.length === 0" type="dark">
+    No se encontraron resultados
+  </ui-alert>
+
   <ui-short-item
     *ngFor="let s of staff; index as index"
     (elementClick)="onClick($event)"
