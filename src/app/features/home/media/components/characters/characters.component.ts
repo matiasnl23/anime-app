@@ -87,7 +87,8 @@ export class CharactersComponent implements OnInit, AfterViewInit, OnDestroy {
 
   getVoiceActorImage(edge: ICharacterEdge): string | undefined {
     return (
-      edge.voiceActors![0].image.large || edge.voiceActors![0].image.medium
+      edge.voiceActors![0] &&
+      (edge.voiceActors![0].image.large || edge.voiceActors![0].image.medium)
     );
   }
 
