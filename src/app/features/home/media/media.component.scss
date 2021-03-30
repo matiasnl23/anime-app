@@ -9,12 +9,13 @@
 
 .detail-container {
   display: grid;
+  grid-template-columns: 100%;
 }
 
 .image-and-action {
   align-items: flex-end;
   display: flex;
-  margin-top: calc(-150px + 48px);
+  margin-top: calc(-150px + 38px + 0.5rem);
   width: 100%;
 
   &.no-banner {

@@ -1,5 +1,7 @@
 p {
   margin: 0;
+  white-space: pre-wrap;
+  overflow: hidden;
 }
 
 img {
@@ -8,4 +10,21 @@ img {
   min-width: 75px;
   object-fit: cover;
   width: 75px;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  overflow-y: hidden;
+
+  .side {
+    display: flex;
+    flex: 1;
+
+    &.right-side {
+      justify-content: flex-end;
+      text-align: right;
+    }
+  }
 }

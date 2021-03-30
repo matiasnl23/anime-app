@@ -1,23 +1,23 @@
-<div class="card d-flex flex-row">
+<div class="card">
   <div
     *ngIf="true"
-    class="left-side d-flex flex-grow-1 flex-shrink-1"
+    class="side left-side"
     (click)="onClick('left')"
     style="cursor: pointer"
   >
     <img *ngIf="leftImage" [src]="leftImage" loading="lazy" />
-    <div class="d-flex flex-column pl-2 py-2">
+    <div class="pl-2 py-2">
       <p class="small">{{ leftTitle }}</p>
       <p class="small mt-auto">{{ leftSecondary }}</p>
     </div>
   </div>
   <div
     *ngIf="true"
-    class="right-side d-flex justify-content-end text-right flex-grow-1 flex-shrink-1"
+    class="side right-side"
     (click)="onClick('right')"
     style="cursor: pointer"
   >
-    <div class="d-flex flex-column pr-2 py-2">
+    <div class="pr-2 py-2">
       <p class="small">{{ rightTitle }}</p>
       <p class="small mt-auto">{{ rightSecondary }}</p>
     </div>
