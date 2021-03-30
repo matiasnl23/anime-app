@@ -1,1 +1,13 @@
-<p>MediaComponent works!</p>
+<div class="items-container">
+  <ui-short-item
+    *ngFor="let m of media; index as index"
+    (elementClick)="onClick($event)"
+    [id]="index"
+    [leftTitle]="m.node.title?.romaji"
+    [leftSecondary]="getMediaYear(m.node)"
+    [leftImage]="getMediaCover(m.node)"
+    [rightTitle]="m.characters![0].name.full"
+    [rightSecondary]="m.characterRole"
+    [rightImage]="m.characters![0].image.large || m.characters![0].image.medium"
+  ></ui-short-item>
+</div>

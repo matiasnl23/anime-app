@@ -51,6 +51,7 @@ export const getStaffMediaQuery = gql`
           perPage
           lastPage
           hasNextPage
+          currentPage
         }
       }
     }
@@ -98,6 +99,55 @@ export const getStaffCharacters = gql`
           perPage
           lastPage
           hasNextPage
+          currentPage
+        }
+      }
+    }
+  }
+`;
+
+export const getStaffCharacterMediaQuery = gql`
+  query($id: Int, $page: Int, $sort: [MediaSort]) {
+    Staff(id: $id) {
+      characterMedia(page: $page, sort: $sort) {
+        edges {
+          node {
+            id
+            title {
+              romaji
+              english
+              native
+            }
+            coverImage {
+              color
+              extraLarge
+              large
+              medium
+            }
+            seasonYear
+          }
+          characters {
+            id
+            name {
+              first
+              last
+              full
+              native
+            }
+            image {
+              large
+              medium
+            }
+          }
+          characterRole
+          favouriteOrder
+        }
+        pageInfo {
+          total
+          perPage
+          lastPage
+          hasNextPage
+          currentPage
         }
       }
     }

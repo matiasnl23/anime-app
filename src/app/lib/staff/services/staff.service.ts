@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { IStaff } from '../interfaces/staff.interface';
-import { getStaffCharacters, getStaffQuery } from '../queries/staff.query';
+import {
+  getStaffCharacterMediaQuery,
+  getStaffCharacters,
+  getStaffQuery,
+} from '../queries/staff.query';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +28,17 @@ export class StaffService {
       variables: {
         id,
         page,
+      },
+    }).valueChanges;
+  }
+
+  getCharactersMedia(id: number, page: number = 1, options?: any) {
+    return this.apollo.watchQuery<IStaffResponse>({
+      query: getStaffCharacterMediaQuery,
+      variables: {
+        id,
+        page,
+        ...options,
       },
     }).valueChanges;
   }
