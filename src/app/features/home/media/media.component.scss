@@ -7,6 +7,10 @@
   width: 100%;
 }
 
+.detail-container {
+  display: grid;
+}
+
 .image-and-action {
   align-items: flex-end;
   display: flex;
@@ -33,6 +37,11 @@
 @include media-breakpoint-up(sm) {
   .banner {
     height: 300px;
+  }
+
+  .detail-container {
+    column-gap: 1rem;
+    grid-template-columns: 200px auto;
   }
 
   .image-and-action {
