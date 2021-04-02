@@ -23,7 +23,7 @@ export const getStaffQuery = gql`
   }
 `;
 
-export const getStaffMediaQuery = gql`
+export const getStaffMediaRolesQuery = gql`
   query($id: Int) {
     Staff(id: $id) {
       staffMedia {
@@ -41,6 +41,7 @@ export const getStaffMediaQuery = gql`
               large
               medium
             }
+            seasonYear
           }
           relationType
           staffRole

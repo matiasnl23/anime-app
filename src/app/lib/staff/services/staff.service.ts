@@ -4,6 +4,7 @@ import { IStaff } from '../interfaces/staff.interface';
 import {
   getStaffCharacterMediaQuery,
   getStaffCharacters,
+  getStaffMediaRolesQuery,
   getStaffQuery,
 } from '../queries/staff.query';
 
@@ -35,6 +36,17 @@ export class StaffService {
   getCharactersMedia(id: number, page: number = 1, options?: any) {
     return this.apollo.watchQuery<IStaffResponse>({
       query: getStaffCharacterMediaQuery,
+      variables: {
+        id,
+        page,
+        ...options,
+      },
+    }).valueChanges;
+  }
+
+  getStaffMediaRoles(id: number, page: number = 1, options?: any) {
+    return this.apollo.watchQuery<IStaffResponse>({
+      query: getStaffMediaRolesQuery,
       variables: {
         id,
         page,

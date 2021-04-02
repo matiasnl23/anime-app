@@ -1,0 +1,11 @@
+<div class="items-container">
+  <ui-short-item
+    *ngFor="let m of media; index as index"
+    (elementClick)="onClick($event, m.node.id)"
+    [id]="index"
+    [leftTitle]="m.node.title?.romaji"
+    [leftSecondary]="m.staffRole"
+    [leftImage]="getMediaCover(m.node)"
+    [rightTitle]="getMediaYear(m.node)"
+  ></ui-short-item>
+</div>
