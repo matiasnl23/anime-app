@@ -24,9 +24,9 @@ export const getStaffQuery = gql`
 `;
 
 export const getStaffMediaRolesQuery = gql`
-  query($id: Int) {
+  query($id: Int, $page: Int, $sort: [MediaSort]) {
     Staff(id: $id) {
-      staffMedia {
+      staffMedia(page: $page, sort: $sort) {
         edges {
           node {
             id

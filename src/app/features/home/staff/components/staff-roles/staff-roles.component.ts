@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IMedia, IMediaEdge } from '@lib/media';
+import { IMedia, IMediaEdge, MediaSort } from '@lib/media';
+import { ScrollService } from '@lib/scroll';
 import { StaffService } from '@lib/staff';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -25,6 +26,7 @@ export class StaffMediaRolesComponent implements OnInit, OnDestroy {
 
   constructor(
     private rotuer: Router,
+    private scrollService: ScrollService,
     private staffService: StaffService,
     route: ActivatedRoute
   ) {
@@ -33,6 +35,7 @@ export class StaffMediaRolesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getMedia();
+    this.getScroll();
   }
 
   ngOnDestroy(): void {
@@ -41,23 +44,21 @@ export class StaffMediaRolesComponent implements OnInit, OnDestroy {
 
   getMedia(page: number = 1) {
     this.loading = true;
-    this.subscriptions.add(
-      this.staffService
-        .getStaffMediaRoles(this.id, page)
-        .pipe(
-          map((response) => {
-            this.currentPage =
-              response.data.Staff.staffMedia?.pageInfo?.currentPage || 1;
-            this.hasNextPage =
-              response.data.Staff.staffMedia?.pageInfo?.hasNextPage || false;
-            return response.data.Staff.staffMedia?.edges || [];
-          })
-        )
-        .subscribe((media) => {
-          this.media = media;
-          this.loading = false;
+    this.staffService
+      .getStaffMediaRoles(this.id, page, { sort: [MediaSort.START_DATE_DESC] })
+      .pipe(
+        map((response) => {
+          this.currentPage =
+            response.data.Staff.staffMedia?.pageInfo?.currentPage || 1;
+          this.hasNextPage =
+            response.data.Staff.staffMedia?.pageInfo?.hasNextPage || false;
+          return response.data.Staff.staffMedia?.edges || [];
         })
-    );
+      )
+      .subscribe((media) => {
+        this.media = [...this.media, ...media];
+        this.loading = false;
+      });
   }
 
   getMediaCover(media: IMedia) {
@@ -67,6 +68,16 @@ export class StaffMediaRolesComponent implements OnInit, OnDestroy {
 
   getMediaYear(media: IMedia) {
     return `${media.seasonYear}`;
+  }
+
+  getScroll(): void {
+    this.subscriptions.add(
+      this.scrollService.percentScroll().subscribe((percentValue) => {
+        if (!this.loading && this.hasNextPage && percentValue > 80) {
+          this.getMedia(this.currentPage + 1);
+        }
+      })
+    );
   }
 
   onClick(e: { id: number; element: string }, id: number) {
