@@ -1,4 +1,8 @@
 <div class="items-container">
+  <ui-alert *ngIf="!loading && media.length === 0" type="dark">
+    No se encontraron resultados
+  </ui-alert>
+
   <ui-short-item
     *ngFor="let m of media; index as index"
     (elementClick)="onClick($event, m.node.id)"
