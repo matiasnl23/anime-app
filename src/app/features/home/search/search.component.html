@@ -1,7 +1,12 @@
-<form class="form-container">
-  <input type="text" placeholder="Buscar anime..." />
-  <select>
-    <option value="ANIME">Anime</option>
-    <option value="MANGA">Manga</option>
+<form class="form-container" [formGroup]="form" (submit)="onSubmit()">
+  <input
+    formControlName="search"
+    type="text"
+    placeholder="Buscar {{ type | lowercase }}..."
+  />
+  <select formControlName="type">
+    <option *ngFor="let o of typeOptions" [value]="o.value">
+      {{ o.description }}
+    </option>
   </select>
 </form>

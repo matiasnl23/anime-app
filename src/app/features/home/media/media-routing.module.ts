@@ -4,8 +4,10 @@ import { CharactersComponent } from './components/characters/characters.componen
 import { RelationsComponent } from './components/relations/relations.component';
 import { StaffComponent } from './components/staff/staff.component';
 import { MediaComponent } from './media.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 const routes: Routes = [
+  { path: 'search-results', component: SearchResultsComponent },
   {
     path: ':id',
     component: MediaComponent,
