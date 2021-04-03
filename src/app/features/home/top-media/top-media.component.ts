@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { IMedia, MediaFormat, MediaService, MediaSort } from '@lib/media';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MediaFormat } from 'src/app/lib/media/enums/media-format.enum';
-import { ITopAnime } from 'src/app/lib/top-results/interfaces/top-results.interface';
-import { TopResultsService } from 'src/app/lib/top-results/services/top-results.service';
 
 @Component({
   selector: 'app-top-media',
@@ -11,25 +9,37 @@ import { TopResultsService } from 'src/app/lib/top-results/services/top-results.
   styleUrls: ['./top-media.component.scss'],
 })
 export class TopMediaComponent implements OnInit {
-  topAnimes?: Observable<ITopAnime[]>;
+  topAnimes?: Observable<IMedia[]>;
 
-  topMovies?: Observable<ITopAnime[]>;
+  topMovies?: Observable<IMedia[]>;
 
-  topOva?: Observable<ITopAnime[]>;
+  topOva?: Observable<IMedia[]>;
 
-  constructor(private topResults: TopResultsService) {}
+  constructor(private mediaService: MediaService) {}
 
   ngOnInit(): void {
-    this.topAnimes = this.topResults
-      .getTopAnimes(MediaFormat.TV)
-      .valueChanges.pipe(map((r) => r.data.Page.media));
+    this.topAnimes = this.mediaService
+      .getMediaPaginated(1, {
+        format: MediaFormat.TV,
+        perPage: 10,
+        sort: [MediaSort.POPULARITY_DESC],
+      })
+      .pipe(map((r) => r.data.Page.media || []));
 
-    this.topMovies = this.topResults
-      .getTopAnimes(MediaFormat.MOVIE)
-      .valueChanges.pipe(map((r) => r.data.Page.media));
+    this.topMovies = this.mediaService
+      .getMediaPaginated(1, {
+        format: MediaFormat.MOVIE,
+        perPage: 10,
+        sort: [MediaSort.POPULARITY_DESC],
+      })
+      .pipe(map((r) => r.data.Page.media || []));
 
-    this.topOva = this.topResults
-      .getTopAnimes(MediaFormat.OVA)
-      .valueChanges.pipe(map((r) => r.data.Page.media));
+    this.topOva = this.mediaService
+      .getMediaPaginated(1, {
+        format: MediaFormat.OVA,
+        perPage: 10,
+        sort: [MediaSort.POPULARITY_DESC],
+      })
+      .pipe(map((r) => r.data.Page.media || []));
   }
 }

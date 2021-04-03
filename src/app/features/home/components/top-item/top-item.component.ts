@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ITopAnime } from 'src/app/lib/top-results/interfaces/top-results.interface';
+import { IMedia } from '@lib/media';
 
 @Component({
   selector: 'app-top-item',
@@ -9,7 +9,7 @@ import { ITopAnime } from 'src/app/lib/top-results/interfaces/top-results.interf
 })
 export class TopItemComponent implements OnInit {
   @Input()
-  item: ITopAnime = {} as ITopAnime;
+  item!: IMedia;
 
   constructor(private router: Router) {}
 
