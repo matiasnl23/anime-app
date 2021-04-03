@@ -1,3 +1,5 @@
+import { CharacterSort } from '@lib/character';
+import { MediaSort, MediaType } from '@lib/media';
 import { ICharacterConnection } from '../../character/interfaces/character.interface';
 import { IMediaConnection } from '../../media/interfaces/media.interface';
 import { IPage } from '../../page/interfaces/page.interface';
@@ -42,4 +44,18 @@ export interface IStaffName {
 export interface IStaffImage {
   large: string;
   medium: string;
+}
+
+export interface IStaffMediaOptions {
+  onList?: boolean;
+  sort?: MediaSort[];
+  type?: MediaType;
+}
+
+export interface IStaffCharactersOptions {
+  sort?: CharacterSort[];
+}
+
+export interface IStaffCharacterMediaOptions {
+  sort?: MediaSort[];
 }

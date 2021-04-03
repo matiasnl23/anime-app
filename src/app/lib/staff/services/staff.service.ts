@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { IStaff } from '../interfaces/staff.interface';
+import {
+  IStaff,
+  IStaffCharacterMediaOptions,
+  IStaffCharactersOptions,
+  IStaffMediaOptions,
+} from '../interfaces/staff.interface';
 import {
   getStaffCharacterMediaQuery,
   getStaffCharacters,
@@ -23,17 +28,26 @@ export class StaffService {
     }).valueChanges;
   }
 
-  getCharacters(id: number, page: number = 1) {
+  getCharacters(
+    id: number,
+    page: number = 1,
+    options?: IStaffCharactersOptions
+  ) {
     return this.apollo.watchQuery<IStaffResponse>({
       query: getStaffCharacters,
       variables: {
         id,
         page,
+        ...options,
       },
     }).valueChanges;
   }
 
-  getCharactersMedia(id: number, page: number = 1, options?: any) {
+  getCharactersMedia(
+    id: number,
+    page: number = 1,
+    options?: IStaffCharacterMediaOptions
+  ) {
     return this.apollo.watchQuery<IStaffResponse>({
       query: getStaffCharacterMediaQuery,
       variables: {
@@ -44,7 +58,11 @@ export class StaffService {
     }).valueChanges;
   }
 
-  getStaffMediaRoles(id: number, page: number = 1, options?: any) {
+  getStaffMediaRoles(
+    id: number,
+    page: number = 1,
+    options?: IStaffMediaOptions
+  ) {
     return this.apollo.watchQuery<IStaffResponse>({
       query: getStaffMediaRolesQuery,
       variables: {

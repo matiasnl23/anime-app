@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ICharacter, ICharacterEdge } from '@lib/character';
+import { CharacterSort, ICharacter, ICharacterEdge } from '@lib/character';
 import { IMedia } from '@lib/media';
 import { ScrollService } from '@lib/scroll';
 import { StaffService } from '@lib/staff';
@@ -46,7 +46,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
   getCharacters(page: number = 1): void {
     this.loading = true;
     this.staffService
-      .getCharacters(this.id, page)
+      .getCharacters(this.id, page, { sort: [CharacterSort.ROLE] })
       .pipe(
         map((result) => {
           this.currentPage =

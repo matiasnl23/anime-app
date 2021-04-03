@@ -24,9 +24,15 @@ export const getStaffQuery = gql`
 `;
 
 export const getStaffMediaRolesQuery = gql`
-  query($id: Int, $page: Int, $sort: [MediaSort]) {
+  query(
+    $id: Int
+    $page: Int
+    $sort: [MediaSort]
+    $type: MediaType
+    $onList: Boolean
+  ) {
     Staff(id: $id) {
-      staffMedia(page: $page, sort: $sort) {
+      staffMedia(page: $page, sort: $sort, type: $type, onList: $onList) {
         edges {
           node {
             id
@@ -60,9 +66,9 @@ export const getStaffMediaRolesQuery = gql`
 `;
 
 export const getStaffCharacters = gql`
-  query($id: Int, $page: Int) {
+  query($id: Int, $page: Int, $sort: [CharacterSort]) {
     Staff(id: $id) {
-      characters(page: $page, sort: [ID]) {
+      characters(page: $page, sort: $sort) {
         edges {
           node {
             id
@@ -108,9 +114,9 @@ export const getStaffCharacters = gql`
 `;
 
 export const getStaffCharacterMediaQuery = gql`
-  query($id: Int, $page: Int, $sort: [MediaSort]) {
+  query($id: Int, $page: Int, $sort: [MediaSort], $onList: Boolean) {
     Staff(id: $id) {
-      characterMedia(page: $page, sort: $sort) {
+      characterMedia(page: $page, sort: $sort, onList: $onList) {
         edges {
           node {
             id
