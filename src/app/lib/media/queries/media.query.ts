@@ -72,6 +72,13 @@ export const getMediaPaginatedQuery = gql`
     $perPage: Int
   ) {
     Page(page: $page, perPage: $perPage) {
+      pageInfo {
+        total
+        perPage
+        currentPage
+        lastPage
+        hasNextPage
+      }
       media(
         id: $id
         idMal: $idMal

@@ -1,1 +1,8 @@
-<p>SearchResultsComponent works!</p>
+<div class="items-container">
+  <ui-short-item
+    *ngFor="let m of media"
+    (elementClick)="goToMedia(m.id)"
+    [leftImage]="getCover(m)"
+    [leftTitle]="m.title!.romaji"
+  ></ui-short-item>
+</div>

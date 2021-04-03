@@ -6,6 +6,7 @@ import { RelationsComponent } from './components/relations/relations.component';
 import { StaffComponent } from './components/staff/staff.component';
 import { MediaRoutingModule } from './media-routing.module';
 import { MediaComponent } from './media.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 @NgModule({
   imports: [CommonModule, MediaRoutingModule, UIModule],
@@ -14,6 +15,7 @@ import { MediaComponent } from './media.component';
     MediaComponent,
     RelationsComponent,
     StaffComponent,
+    SearchResultsComponent,
   ],
   exports: [],
 })
