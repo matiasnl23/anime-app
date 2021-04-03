@@ -1,25 +1,25 @@
 import {
   IAiringSchedule,
   IAiringScheduleConnection,
-} from '../../airing-schedule/interfaces/airing-schedule.interface';
-import { CharacterRole } from '../../character/enums/character-role.enum';
+} from '@lib/airing-schedule';
 import {
+  CharacterRole,
+  CharacterSort,
   ICharacter,
   ICharacterConnection,
-} from '../../character/interfaces/character.interface';
-import { IDate } from '../../date/interfaces/date.interface';
-import { IPage } from '../../page/interfaces/page.interface';
+} from '@lib/character';
+import { IDate } from '@lib/date';
 import {
-  IStaff,
-  IStaffConnection,
-} from '../../staff/interfaces/staff.interface';
-import { IStudioConnection } from '../../studio/interfaces/studio.interface';
-import { MediaFormat } from '../enums/media-format.enum';
-import { MediaRelation } from '../enums/media-relation.enum';
-import { MediaSeason } from '../enums/media-season.enum';
-import { MediaSource } from '../enums/media-source.enum';
-import { MediaStatus } from '../enums/media-status.enum';
-import { MediaType } from '../enums/media-type.enum';
+  MediaFormat,
+  MediaRelation,
+  MediaSeason,
+  MediaSource,
+  MediaStatus,
+  MediaType,
+} from '@lib/media';
+import { IPage } from '@lib/page';
+import { IStaff, IStaffConnection, StaffSort } from '@lib/staff';
+import { IStudioConnection } from '@lib/studio';
 
 export interface IMedia {
   id: number;
@@ -97,4 +97,13 @@ export interface IMediaEdge {
   staffRole?: string;
   voiceActors?: IStaff[];
   favouriteOrder?: number;
+}
+
+export interface IMediaCharactersOptions {
+  role?: CharacterRole;
+  sort?: CharacterSort[];
+}
+
+export interface IMediaStaffOptions {
+  sort?: StaffSort;
 }

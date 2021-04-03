@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ApolloQueryResult } from '@apollo/client/core';
+import { IAiringScheduleConnection } from '@lib/airing-schedule';
+import { ICharacterConnection } from '@lib/character';
+import { StaffLanguage } from '@lib/staff';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IAiringScheduleConnection } from '../../airing-schedule/interfaces/airing-schedule.interface';
-import { ICharacterConnection } from '../../character/interfaces/character.interface';
-import { StaffLanguage } from '../../staff/enums/staff.enum';
-import { IMedia } from '../interfaces/media.interface';
+import { IMedia } from '..';
 import {
   getAiringSchedules,
   getCharactersQuery,

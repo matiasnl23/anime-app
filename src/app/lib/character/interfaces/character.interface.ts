@@ -1,10 +1,7 @@
-import {
-  IMedia,
-  IMediaConnection,
-} from '../../media/interfaces/media.interface';
-import { IPage } from '../../page/interfaces/page.interface';
-import { IStaff } from '../../staff/interfaces/staff.interface';
-import { CharacterRole } from '../enums/character-role.enum';
+import { CharacterRole } from '@lib/character';
+import { IMedia, IMediaConnection } from '@lib/media';
+import { IPage } from '@lib/page';
+import { IStaff } from '@lib/staff';
 
 export interface ICharacter {
   id: number;

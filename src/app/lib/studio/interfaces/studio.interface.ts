@@ -1,5 +1,5 @@
-import { IMediaConnection } from '../../media/interfaces/media.interface';
-import { IPage } from '../../page/interfaces/page.interface';
+import { IMediaConnection } from '@lib/media';
+import { IPage } from '@lib/page';
 
 export interface IStudio {
   id: number;

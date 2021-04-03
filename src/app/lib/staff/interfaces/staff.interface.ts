@@ -1,9 +1,7 @@
-import { CharacterSort } from '@lib/character';
-import { MediaSort, MediaType } from '@lib/media';
-import { ICharacterConnection } from '../../character/interfaces/character.interface';
-import { IMediaConnection } from '../../media/interfaces/media.interface';
-import { IPage } from '../../page/interfaces/page.interface';
-import { StaffLanguage } from '../enums/staff.enum';
+import { CharacterSort, ICharacterConnection } from '@lib/character';
+import { IMediaConnection, MediaSort, MediaType } from '@lib/media';
+import { IPage } from '@lib/page';
+import { StaffLanguage } from '@lib/staff';
 
 export interface IStaff {
   id: number;

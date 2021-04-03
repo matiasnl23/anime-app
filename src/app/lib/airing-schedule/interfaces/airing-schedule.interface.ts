@@ -1,5 +1,5 @@
-import { IMedia } from '../../media/interfaces/media.interface';
-import { IPage } from '../../page/interfaces/page.interface';
+import { IMedia } from '@lib/media';
+import { IPage } from '@lib/page';
 
 export interface IAiringSchedule {
   id: number;
