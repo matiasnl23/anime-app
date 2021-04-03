@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { ApolloQueryResult } from '@apollo/client/core';
 import { IAiringScheduleConnection } from '@lib/airing-schedule';
 import { ICharacterConnection } from '@lib/character';
-import { StaffLanguage } from '@lib/staff';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IMedia } from '..';
+import {
+  IMediaCharactersOptions,
+  IMediaStaffOptions,
+} from '../interfaces/media.interface';
 import {
   getAiringSchedules,
   getCharactersQuery,
@@ -24,15 +27,15 @@ export class MediaService {
   getCharacters(
     id: number,
     page: number = 1,
-    language: StaffLanguage = StaffLanguage.JAPANESE
+    options?: IMediaCharactersOptions
   ): Observable<ICharacterConnection | undefined> {
     return this.apollo
       .watchQuery<IMediaResponse>({
         query: getCharactersQuery,
         variables: {
           id,
-          language,
           page,
+          ...options,
         },
       })
       .valueChanges.pipe(map((response) => response.data.Media?.characters));
@@ -40,13 +43,15 @@ export class MediaService {
 
   getStaff(
     id: number,
-    page: number = 1
+    page: number = 1,
+    options?: IMediaStaffOptions
   ): Observable<ApolloQueryResult<IMediaResponse>> {
     return this.apollo.watchQuery<IMediaResponse>({
       query: getStaffQuery,
       variables: {
         id,
         page,
+        ...options,
       },
     }).valueChanges;
   }

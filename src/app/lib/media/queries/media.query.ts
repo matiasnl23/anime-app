@@ -110,9 +110,16 @@ export const getStaffQuery = gql`
 `;
 
 export const getCharactersQuery = gql`
-  query($id: Int, $language: StaffLanguage, $page: Int) {
+  query(
+    $id: Int
+    $role: CharacterRole
+    $sort: [CharacterSort]
+    $staffLanguage: StaffLanguage
+    $staffSort: [StaffSort]
+    $page: Int
+  ) {
     Media(id: $id) {
-      characters(page: $page) {
+      characters(page: $page, role: $role, sort: $sort) {
         edges {
           role
           node {
@@ -127,7 +134,7 @@ export const getCharactersQuery = gql`
               medium
             }
           }
-          voiceActors(language: $language) {
+          voiceActors(language: $staffLanguage, sort: $staffSort) {
             id
             name {
               first

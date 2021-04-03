@@ -18,7 +18,7 @@ import {
   MediaType,
 } from '@lib/media';
 import { IPage } from '@lib/page';
-import { IStaff, IStaffConnection, StaffSort } from '@lib/staff';
+import { IStaff, IStaffConnection, StaffLanguage, StaffSort } from '@lib/staff';
 import { IStudioConnection } from '@lib/studio';
 
 export interface IMedia {
@@ -102,6 +102,8 @@ export interface IMediaEdge {
 export interface IMediaCharactersOptions {
   role?: CharacterRole;
   sort?: CharacterSort[];
+  staffLanguage?: StaffLanguage;
+  staffSort?: StaffSort[];
 }
 
 export interface IMediaStaffOptions {

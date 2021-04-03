@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CharacterSort } from '@lib/character';
+import { StaffLanguage } from '@lib/staff';
 import { Subscription } from 'rxjs';
 import { first, map, tap } from 'rxjs/operators';
 import {
@@ -50,9 +52,11 @@ export class CharactersComponent implements OnInit, AfterViewInit, OnDestroy {
 
   getCharacters(page: number = 1): void {
     this.loading = true;
-
     this.mediaService
-      .getCharacters(this.id, page)
+      .getCharacters(this.id, page, {
+        sort: [CharacterSort.ROLE],
+        staffLanguage: StaffLanguage.JAPANESE,
+      })
       .pipe(
         first(),
         tap((result) => {
